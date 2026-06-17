@@ -1,0 +1,44 @@
+/* ============================================================
+   MetriFi Brand — base element styles
+   Opinionated resets + element defaults that express the
+   Instrument voice. Depends on tokens.css (import it first,
+   or use index.css which bundles everything).
+   ============================================================ */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background-color: var(--canvas);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  margin: 0;
+}
+
+/* Emphasis: violet on the canvas, green on a surface/card.
+   Add .mf-surface to a card/panel to flip the accent. */
+h1 em, h2 em, h3 em { color: var(--violet); font-style: normal; }
+.mf-surface h2 em, .mf-surface h3 em { color: var(--green); }
+
+p { margin: 0; text-wrap: pretty; }
+a { color: inherit; text-decoration: none; }
+
+::selection { background: var(--violet-20); color: var(--text); }
+:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; }
+
+/* Utilities */
+.mono { font-family: var(--font-mono); }
+.tab  { font-variant-numeric: tabular-nums lining-nums; }

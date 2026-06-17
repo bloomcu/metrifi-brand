@@ -1,0 +1,16 @@
+/* ============================================================
+   MetriFi Brand — full bundle
+   Loads fonts + tokens + base element styles + components in
+   the correct order. Import this for the whole Instrument
+   system in one line:
+
+     import "@metrifi/brand/index.css";   // JS/bundler
+     @import "@metrifi/brand/index.css";  // CSS/Vite
+
+   Want only the design tokens (your own element styles)?
+   Import "@metrifi/brand/tokens.css" instead.
+   ============================================================ */
+@import "./fonts.css";
+@import "./tokens.css";
+@import "./base.css";
+@import "./components.css";

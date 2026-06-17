@@ -1,0 +1,129 @@
+/* ============================================================
+   MetriFi Brand — shared components
+   Plain-CSS building blocks used across MetriFi surfaces
+   (auth pages, simple forms, consent screens). Depends on
+   tokens.css. For React/Tailwind apps you'll often style with
+   the tokens directly instead — these are here for server-
+   rendered views (Blade, plain HTML) that want ready classes.
+   ============================================================ */
+
+/* ---- Layout helpers ---- */
+.wrap { width: 100%; max-width: 400px; }
+.row  { display: flex; gap: 10px; }
+.row .btn, .row .btn-ghost { margin-top: 0; }
+
+/* ---- Brand mark ---- */
+.logo { display: block; height: 26px; margin: 0 auto 26px; }
+
+/* ---- Headings on the canvas ---- */
+.title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.5rem;
+  letter-spacing: -0.015em;
+  text-align: center;
+  margin: 0 0 6px;
+  color: var(--text);
+}
+.title em { color: var(--violet); font-style: normal; } /* canvas accent = violet */
+.sub { color: var(--muted); text-align: center; margin: 0 0 24px; font-size: 14px; }
+
+/* ---- Card / panel ---- */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: 28px;
+  box-shadow: var(--inset-hi);
+}
+
+/* ---- Monospace field labels — the Instrument voice ---- */
+label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 16px 0 7px;
+}
+label:first-of-type { margin-top: 0; }
+
+/* ---- Inputs ---- */
+input[type="text"], input[type="email"], input[type="password"] {
+  width: 100%;
+  padding: 11px 13px;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-family: var(--font-body);
+  background: var(--canvas);
+  border: 1px solid var(--line-strong);
+  color: var(--text);
+}
+input::placeholder { color: var(--muted); opacity: 0.7; }
+input:focus { outline: none; border-color: var(--violet); }
+
+/* ---- Primary CTA: green fill, canvas text, hover flips to violet ---- */
+.btn {
+  width: 100%;
+  margin-top: 24px;
+  padding: 12px;
+  border: 0;
+  border-radius: var(--radius-button);
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 15px;
+  cursor: pointer;
+  background: var(--green);
+  color: var(--canvas);
+  transition: background 140ms var(--ease-standard);
+}
+.btn:hover  { background: var(--violet); }
+.btn:active { transform: translateY(1px); }
+
+/* ---- Secondary / ghost: violet text + border ---- */
+.btn-ghost {
+  background: transparent;
+  color: var(--violet);
+  border: 1.5px solid var(--violet);
+}
+.btn-ghost:hover {
+  background: transparent;
+  color: var(--violet-hover);
+  border-color: var(--violet-hover);
+}
+
+/* ---- Error block ---- */
+.err {
+  background: rgba(232, 93, 86, 0.10);
+  border: 1px solid rgba(232, 93, 86, 0.35);
+  color: #F2A6A1;
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  font-size: 13px;
+  margin-bottom: 4px;
+  line-height: 1.5;
+}
+
+/* ---- On-card accent = green (violet is canvas-only) ---- */
+.foot { color: var(--muted); text-align: center; font-size: 13px; margin-top: 20px; line-height: 1.5; }
+.foot a, .link { color: var(--green); font-weight: 500; }
+
+/* ---- Consent / scope list ---- */
+.scopes { list-style: none; padding: 0; margin: 0 0 20px; }
+.scopes li {
+  padding: 11px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 14px;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.scopes li:last-child { border-bottom: 0; }
+.scopes li::before {
+  content: "";
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--green); flex-shrink: 0;
+}
+.who { color: var(--muted); text-align: center; font-size: 12px; margin-top: 18px; font-family: var(--font-mono); }

@@ -1,0 +1,80 @@
+/* ============================================================
+   MetriFi Brand — "Instrument" design tokens
+   The single source of truth. Dark-only. Import this anywhere
+   you need MetriFi colors, type, radii, motion, or rails.
+
+   This file is PURE tokens — no element styles, no font loading.
+   Pair with fonts.css (to load the typefaces) and base.css /
+   components.css (for element + component styles), or just use
+   index.css for the whole system at once.
+   ============================================================ */
+
+:root {
+  /* ---- Surfaces (dark-only) ---- */
+  --canvas:   #0F0A1A; /* page background */
+  --surface:  #1A1230; /* cards, panels */
+  --elevated: #241845; /* raised surfaces, hovers */
+
+  /* ---- Accents ----
+     Violet is a CANVAS-ONLY accent (emphasis on the page background).
+     On a surface/card, the accent flips to green. See DESIGN.md. */
+  --violet:        #A074FF;
+  --violet-hover:  #B088FF;
+  --green:         #7DD4AA;
+  --green-hover:   #93E0BB;
+
+  /* ---- Status ---- */
+  --gold: #D4B84A;
+  --red:  #E85D56;
+
+  /* ---- Text ---- */
+  --text:      #E8E4F0; /* primary */
+  --muted:     #A89FC0; /* secondary / labels */
+  --dark-text: #0F0A1A; /* text on green/violet fills */
+
+  /* ---- Hairlines ---- */
+  --line-faint:  rgba(255, 255, 255, 0.06);
+  --line:        rgba(255, 255, 255, 0.08);
+  --line-soft:   rgba(255, 255, 255, 0.10);
+  --line-strong: rgba(255, 255, 255, 0.14);
+
+  /* ---- Tinted washes ---- */
+  --violet-08: rgba(160, 116, 255, 0.08);
+  --violet-12: rgba(160, 116, 255, 0.12);
+  --violet-20: rgba(160, 116, 255, 0.20);
+  --green-08:  rgba(125, 212, 170, 0.08);
+  --green-12:  rgba(125, 212, 170, 0.12);
+  --green-20:  rgba(125, 212, 170, 0.20);
+
+  /* ---- Semantic aliases ---- */
+  --bg-page:    var(--canvas);
+  --cta:        var(--green);  /* primary action fill */
+  --cta-text:   var(--canvas); /* text on the CTA */
+  --cta-hover:  var(--violet); /* CTA hover flips to violet */
+  --focus-ring: var(--violet);
+
+  /* ---- Typography ---- */
+  --font-display: "Space Grotesk", "Segoe UI", system-ui, sans-serif;
+  --font-body:    "Inter", "Segoe UI", system-ui, sans-serif;
+  --font-mono:    ui-monospace, "SF Mono", "Menlo", "Consolas", monospace;
+
+  /* ---- Radii ----
+     Buttons are nearly square (2px) — a signature of the system. */
+  --radius-button: 2px;
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+
+  /* ---- Motion ---- */
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-out:      cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* ---- Elevation ---- */
+  --inset-hi:  inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  --shadow-md: 0 12px 32px -12px rgba(0, 0, 0, 0.65);
+
+  /* ---- Page rails ----
+     The 1240px frame uses hairline vertical rails + <hr> rules. */
+  --rail:   rgba(255, 255, 255, 0.06);
+  --rail-2: rgba(255, 255, 255, 0.10);
+}

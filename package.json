@@ -1,0 +1,34 @@
+{
+  "name": "@metrifi/brand",
+  "version": "0.1.0",
+  "description": "MetriFi's \"Instrument\" design system — design tokens, base styles, components, and brand assets. The single shared source of truth for every MetriFi app and website.",
+  "license": "UNLICENSED",
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bloomcu/metrifi-brand.git"
+  },
+  "type": "module",
+  "sideEffects": [
+    "*.css"
+  ],
+  "files": [
+    "css",
+    "assets",
+    "DESIGN.md"
+  ],
+  "exports": {
+    ".": "./css/index.css",
+    "./index.css": "./css/index.css",
+    "./tokens.css": "./css/tokens.css",
+    "./fonts.css": "./css/fonts.css",
+    "./base.css": "./css/base.css",
+    "./components.css": "./css/components.css",
+    "./logo.svg": "./assets/logo.svg",
+    "./favicon.svg": "./assets/favicon.svg",
+    "./package.json": "./package.json"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  }
+}
