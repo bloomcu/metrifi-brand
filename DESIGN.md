@@ -1,12 +1,13 @@
 # MetriFi "Instrument" Design System
 
-The visual language for MetriFi 2.0 — product-only, dark-only. Named **Instrument**:
+The visual language for MetriFi 2.0 — dark-only, across **every** surface. Named **Instrument**:
 precise, technical, and quietly confident, like a well-made measuring tool. This document
 is the written spec; [`css/tokens.css`](css/tokens.css) is the machine-readable one. When the
 two disagree, the tokens win and this doc is wrong — fix it.
 
-> **Scope.** Dark mode is the *only* mode. There is no light theme. The system is for MetriFi
-> **product** surfaces (apps, connectors, the gateway, the IdP). Marketing sites may diverge.
+> **Scope.** Dark mode is the *only* mode — there is no light theme, on **any** surface. Instrument
+> applies everywhere: **product** (apps, the gateway, the IdP) **and** **marketing** (the website,
+> campaigns, decks). Marketing does **not** diverge — it's the same dark Instrument brand.
 
 ---
 
@@ -148,6 +149,11 @@ and horizontal `<hr>` rules between sections. Section padding is fluid
 
 ## 7. Consuming this
 
-See [`README.md`](README.md). Short version: import `@metrifi/brand/tokens.css` for just the
-variables, or `@metrifi/brand` (the full bundle) for tokens + base + components. Brand assets are
-`@metrifi/brand/logo.svg` and `@metrifi/brand/favicon.svg`.
+See [`README.md`](README.md). Short version:
+- **React + shadcn app** (apps, website islands) → `@metrifi/brand/app.css` — Instrument mapped onto
+  shadcn's variable contract; every shadcn component comes out on-brand. See README → *Theming a shadcn app*.
+- **Plain HTML / Blade** (the IdP) → `@metrifi/brand` (full bundle: tokens + base + components).
+- **Tokens only** → `@metrifi/brand/tokens.css`.
+
+Brand assets: `@metrifi/brand/logo.svg`, `@metrifi/brand/favicon.svg`. This is **one** brand across
+**every** surface (product + marketing) — there's no separate marketing theme.

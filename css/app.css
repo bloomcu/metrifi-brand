@@ -1,0 +1,61 @@
+/* ============================================================
+   MetriFi Brand — shadcn/ui theme layer (Instrument, dark-only)
+   Maps the Instrument tokens onto shadcn/ui's CSS-variable contract,
+   so a React + Tailwind + shadcn app is on-brand automatically.
+
+   Use in a shadcn + Tailwind v4 app:
+     import "@metrifi/brand/app.css";   // this file (pulls in tokens.css)
+   then expose the vars to Tailwind utilities with an @theme inline block
+   in your Tailwind entry (see README → "Theming a shadcn app").
+
+   Dark-only: there is no light theme, so the contract lives in :root and
+   there's no separate .dark block.
+
+   ⚠️  Do NOT also load base.css / components.css in a shadcn app. Those
+   target plain-HTML/Blade surfaces and use --muted as a *text* color;
+   shadcn reuses the --muted name as a *surface*. app.css is the React/
+   shadcn entry; base+components is the plain-HTML entry. Pick one per app.
+   ============================================================ */
+@import "./tokens.css";
+
+:root {
+  /* ---- Surfaces ---- */
+  --background: var(--canvas);
+  --foreground: var(--text);
+  --card: var(--surface);
+  --card-foreground: var(--text);
+  --popover: var(--elevated);
+  --popover-foreground: var(--text);
+
+  /* ---- Primary = green (CTA + data accent) ---- */
+  --primary: var(--green);
+  --primary-foreground: var(--dark-text);
+
+  /* ---- Secondary = elevated surface ---- */
+  --secondary: var(--elevated);
+  --secondary-foreground: var(--text);
+
+  /* ---- Muted (shadcn: a surface + its caption text) ---- */
+  --muted: var(--surface);
+  --muted-foreground: #A89FC0; /* = Instrument --muted text; restated because shadcn reuses the --muted name as a surface */
+
+  /* ---- Accent = subtle violet wash for hover/active highlights ---- */
+  --accent: var(--violet-12);
+  --accent-foreground: var(--text);
+
+  /* ---- Destructive ---- */
+  --destructive: var(--red);
+  --destructive-foreground: var(--text);
+
+  /* ---- Lines + focus ---- */
+  --border: var(--line-strong);
+  --input: var(--line-strong);
+  --ring: var(--violet); /* Instrument focus ring */
+
+  /* ---- Radius ----
+     Instrument uses near-square buttons (2px) but rounded cards (12px), and
+     shadcn derives every component radius from one --radius. We set --radius to
+     the card value so cards/popovers/inputs read right; keep the signature
+     squared button by pointing your Button at --radius-button (2px). See README. */
+  --radius: var(--radius-md); /* 12px */
+}

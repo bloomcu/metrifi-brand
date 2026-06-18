@@ -16,9 +16,10 @@ Dark-only, product-focused. One place to change a color; every surface follows.
 |--------|----------|
 | `@metrifi/brand` / `@metrifi/brand/index.css` | Everything: fonts + tokens + base + components |
 | `@metrifi/brand/tokens.css` | Just the CSS variables (bring your own element styles) |
+| `@metrifi/brand/app.css` | **shadcn/ui theme** — Instrument mapped onto shadcn's variable contract (for React + Tailwind + shadcn apps). Pulls in tokens. |
 | `@metrifi/brand/fonts.css` | Space Grotesk + Inter via Google Fonts |
 | `@metrifi/brand/base.css` | Element resets + `body`/headings/utilities (needs tokens) |
-| `@metrifi/brand/components.css` | Plain-CSS components: `.card`, `.btn`, inputs, `.scopes`… |
+| `@metrifi/brand/components.css` | Plain-CSS components: `.card`, `.btn`, inputs, `.scopes`… (plain-HTML/Blade surfaces) |
 | `@metrifi/brand/logo.svg` | Wordmark + violet mark |
 | `@metrifi/brand/favicon.svg` | Favicon |
 
@@ -26,12 +27,12 @@ Dark-only, product-focused. One place to change a color; every surface follows.
 
 ## Install
 
-It's a private package. Two ways to consume it — pick one.
+The repo is **public**, so a plain GitHub install needs no auth (this is how the gateway and IdP consume it). Two ways — pick one.
 
 ### A. Straight from GitHub (no registry, works immediately)
 ```bash
 npm install bloomcu/metrifi-brand          # latest main
-npm install bloomcu/metrifi-brand#v0.1.0    # pin a tag
+npm install bloomcu/metrifi-brand#v0.2.0    # pin a tag
 ```
 
 ### B. GitHub Packages registry (versioned)
@@ -81,6 +82,61 @@ Copy `css/` and `assets/` into your static dir and link `index.css`:
 <link rel="stylesheet" href="/brand/css/index.css">
 <link rel="icon" href="/brand/assets/favicon.svg">
 ```
+
+---
+
+## Theming a shadcn app
+
+For a **React + Tailwind v4 + shadcn/ui** app (apps and the React islands on websites), use
+`app.css` instead of the full bundle — it maps Instrument onto shadcn's variable contract so every
+shadcn component is on-brand with no per-component work.
+
+1. **Import the theme** in your Tailwind/CSS entry, and expose the vars to Tailwind utilities:
+   ```css
+   /* app/globals.css */
+   @import "tailwindcss";
+   @import "@metrifi/brand/app.css";   /* Instrument → shadcn vars (dark-only) */
+   @import "@metrifi/brand/fonts.css";  /* optional: Space Grotesk + Inter */
+
+   @theme inline {
+     --color-background: var(--background);
+     --color-foreground: var(--foreground);
+     --color-card: var(--card);
+     --color-card-foreground: var(--card-foreground);
+     --color-popover: var(--popover);
+     --color-popover-foreground: var(--popover-foreground);
+     --color-primary: var(--primary);
+     --color-primary-foreground: var(--primary-foreground);
+     --color-secondary: var(--secondary);
+     --color-secondary-foreground: var(--secondary-foreground);
+     --color-muted: var(--muted);
+     --color-muted-foreground: var(--muted-foreground);
+     --color-accent: var(--accent);
+     --color-accent-foreground: var(--accent-foreground);
+     --color-destructive: var(--destructive);
+     --color-destructive-foreground: var(--destructive-foreground);
+     --color-border: var(--border);
+     --color-input: var(--input);
+     --color-ring: var(--ring);
+     --radius-lg: var(--radius);
+     --radius-md: calc(var(--radius) - 2px);
+     --radius-sm: calc(var(--radius) - 4px);
+   }
+   ```
+2. **Don't toggle a dark class** — MetriFi is dark-only; the theme is always on. Skip
+   `next-themes` / the `.dark` switch.
+3. **Keep the signature squared button.** `--radius` is set to the card value (12px) so cards,
+   popovers, and inputs read right — but Instrument buttons are near-square (2px). In your copied
+   `button.tsx`, set the radius to Instrument's `--radius-button`:
+   ```diff
+   - "... rounded-md ..."
+   + "... rounded-[var(--radius-button)] ..."
+   ```
+4. **Don't** also import `base.css`/`components.css` here — those are for plain-HTML/Blade surfaces
+   and clash with the shadcn `--muted` semantics (see `app.css` header).
+
+The full token → shadcn mapping (and the why) lives in [`css/app.css`](css/app.css) and
+[`DESIGN.md`](DESIGN.md).
 
 ---
 
