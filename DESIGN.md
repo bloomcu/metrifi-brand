@@ -104,6 +104,13 @@ them `.mf-surface` so the accent flips to green inside.
 `--canvas` background, `--line-strong` border, `--radius-sm` (6px). Focus = violet border, no
 default outline. Labels above inputs are **mono uppercase** (see Voice).
 
+### Copyable values
+Anything the user is meant to read in full or copy — MCP URLs, API tokens, keys, IDs — must stay
+**fully visible**. Let the value **wrap** to the next line; never hide characters behind a horizontal
+scrollbar, an ellipsis, or `text-overflow` truncation. When a copy button shares the row, give the
+value its own full-width line (label + button above, value below) rather than squeezing all three
+into one row — that squeeze is what forces the scroll. Mono, `--text`, `overflow-wrap: anywhere`.
+
 ### The rail frame (marketing/hub layouts)
 A centered **1240px frame** with hairline vertical rails (`border-inline: 1px solid var(--rail)`)
 and horizontal `<hr>` rules between sections. Section padding is fluid
