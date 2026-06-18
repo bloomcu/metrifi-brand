@@ -32,20 +32,24 @@ Instrument reads like an instrument panel, not a brochure:
 | `--surface` | `#1A1230` | Cards, panels |
 | `--elevated` | `#241845` | Raised surfaces, hovers |
 
-### Accents — the one rule that matters
-**Violet is a canvas accent. Green is a surface accent.** They swap based on what's behind them.
+### Accents — two colors, two jobs
+Each accent has a role, and the role is what decides the color — not just what's behind it.
 
-- On the **canvas** (page background), emphasis and links are **violet** (`--violet #A074FF`).
-- On a **surface** (card/panel), emphasis and accents are **green** (`--green #7DD4AA`).
+- **Green is the data / measurement accent** (`--green #7DD4AA`): numbers, metrics, proof points,
+  and the **primary CTA**. Green stands for the *measured value* — which is the whole "Instrument"
+  idea — so it's at home on **any** background, canvas or surface. (This is why the primary CTA has
+  always been green on the canvas.)
+- **Violet is the canvas text/UI accent** (`--violet #A074FF`): text emphasis and links on the page
+  background (`h1 em`), and the focus ring.
 
-This is why `h1 em` is violet but `.mf-surface h2 em` is green. When you put a card on the page,
-add `.mf-surface` so the accent flips correctly. Getting this backwards is the most common way to
-break the brand.
+**Text emphasis still swaps with the background:** violet on the canvas, green on a surface. That's
+why `h1 em` is violet but `.mf-surface h2 em` is green — add `.mf-surface` to a card so its emphasis
+flips. The swap governs *prose emphasis*; **data is green everywhere**.
 
 | Token | Hex | |
 |-------|-----|-|
-| `--violet` / `--violet-hover` | `#A074FF` / `#B088FF` | Canvas accent, focus ring |
-| `--green` / `--green-hover` | `#7DD4AA` / `#93E0BB` | Surface accent, **primary CTA fill** |
+| `--violet` / `--violet-hover` | `#A074FF` / `#B088FF` | Canvas text/UI accent, focus ring |
+| `--green` / `--green-hover` | `#7DD4AA` / `#93E0BB` | Data/metric accent (any bg), **primary CTA fill**, surface emphasis |
 
 ### Status
 | Token | Hex | Use |
@@ -119,7 +123,8 @@ and horizontal `<hr>` rules between sections. Section padding is fluid
 ## 6. Do / Don't
 
 **Do**
-- Flip the accent with `.mf-surface` whenever content sits on a card.
+- Use green for numbers, metrics, and proof points on any background — it's the data accent (§2).
+- Flip *prose* emphasis with `.mf-surface` whenever text sits on a card.
 - Keep body text at weight 300.
 - Use mono uppercase for every label, eyebrow, and piece of metadata.
 - Use white-alpha hairlines for borders.
@@ -127,10 +132,10 @@ and horizontal `<hr>` rules between sections. Section padding is fluid
 **Don't**
 - Don't introduce a light theme.
 - Don't round buttons past 2px.
-- Don't use violet on a surface or green on the bare canvas as the *primary* accent — that's the
-  one rule (§2).
+- Don't use violet as the *prose-emphasis* accent on a surface, or green for prose emphasis on the
+  bare canvas — text emphasis still swaps with the background (§2). (Data stays green either way.)
 - Don't reach for solid gray borders or heavy drop shadows.
-- Don't add a second accent color to a single context.
+- Don't pile multiple *UI* accents into one context — green-for-data alongside violet-for-text is fine.
 
 ---
 
