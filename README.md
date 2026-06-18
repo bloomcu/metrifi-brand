@@ -103,6 +103,34 @@ any card so emphasis flips to green inside it. Full reasoning in [`DESIGN.md`](D
 
 ---
 
+## Releasing a change
+
+Consumers pin a git tag, so a brand change reaches them only when each one bumps its
+pin. That's intentional — styling can't shift under a deploy without a reviewed commit.
+To ship a change:
+
+1. **In this repo** — edit the CSS / assets / `DESIGN.md`, bump `version` in `package.json`
+   (semver, see below), commit, then tag and push:
+   ```bash
+   git commit -am "…"           # the change
+   git tag v0.2.0 && git push origin main v0.2.0
+   ```
+2. **Gateway** (`metrifi-mcp-gateway`, live dep) — bump the pin and redeploy:
+   ```bash
+   npm install bloomcu/metrifi-brand#v0.2.0   # updates package.json + lockfile
+   git commit -am "Bump @metrifi/brand to v0.2.0" && git push   # Vercel auto-deploys
+   ```
+3. **IdP** (`metrifi-id`, generated CSS) — pull the new version, regenerate, commit:
+   ```bash
+   npm install --save-dev bloomcu/metrifi-brand#v0.2.0
+   npm run sync:brand          # regenerates public/metrifi.css from the package
+   git commit -am "Bump @metrifi/brand to v0.2.0" && git push   # Forge deploys (no npm)
+   ```
+
+The IdP ships the *generated* `public/metrifi.css` because its Forge deploy is node-free
+(composer + artisan only) — it never installs this package. Never hand-edit that file; it
+carries a `GENERATED — do not edit` header. Run `sync:brand` instead.
+
 ## Versioning
 
 Semver. Token value changes or renames are breaking (major). Additive tokens/components are minor.
