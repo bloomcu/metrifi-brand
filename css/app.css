@@ -37,7 +37,7 @@
 
   /* ---- Muted (shadcn: a surface + its caption text) ---- */
   --muted: var(--surface);
-  --muted-foreground: #A89FC0; /* = Instrument --muted text; restated because shadcn reuses the --muted name as a surface */
+  --muted-foreground: #BFB8D3; /* = Instrument --muted text; restated because shadcn reuses the --muted name as a surface */
 
   /* ---- Accent = subtle violet wash for hover/active highlights ---- */
   --accent: var(--violet-12);

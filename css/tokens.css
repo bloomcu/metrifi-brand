@@ -29,7 +29,7 @@
 
   /* ---- Text ---- */
   --text:      #E8E4F0; /* primary */
-  --muted:     #A89FC0; /* secondary / labels */
+  --muted:     #BFB8D3; /* secondary / labels — AAA on canvas, surface and elevated */
   --dark-text: #0F0A1A; /* text on green/violet fills */
 
   /* ---- Hairlines ---- */
