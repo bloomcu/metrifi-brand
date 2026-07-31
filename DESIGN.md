@@ -62,7 +62,7 @@ flips. The swap governs *prose emphasis*; **data is green everywhere**.
 | Token | Hex | Use |
 |-------|-----|-----|
 | `--text` | `#E8E4F0` | Primary |
-| `--muted` | `#A89FC0` | Secondary, labels, captions |
+| `--muted` | `#BFB8D3` | Secondary, labels, captions. AAA on all three surfaces (10.21 / 9.39 / 8.53) |
 | `--dark-text` | `#0F0A1A` | Text on green/violet fills |
 
 ### Hairlines & washes
