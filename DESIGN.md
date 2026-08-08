@@ -113,8 +113,12 @@ value its own full-width line (label + button above, value below) rather than sq
 into one row — that squeeze is what forces the scroll. Mono, `--text`, `overflow-wrap: anywhere`.
 
 ### The rail frame (marketing/hub layouts)
-A centered **1240px frame** with hairline vertical rails (`border-inline: 1px solid var(--rail)`)
-and horizontal `<hr>` rules between sections. Section padding is fluid
+A centered **1240px frame** with hairline vertical rails (`border-inline: 1px solid var(--rail)`,
+which resolves to `--line-strong` / .14 — the weight metrifi.com actually uses) and horizontal
+`<hr>` rules between sections. Ruled grids divide with `--rail-2` (`--line-soft` / .10); the site
+does this with `gap: 1px` over the frame background rather than a border per cell, which avoids
+doubled hairlines. **Do not reach for `--line-faint` (.06) here** — nothing in production draws
+structure with it, and it renders a frame you cannot see. Section padding is fluid
 (`clamp(48px, 7vw, 88px)`). This gives the "spec sheet" feel.
 
 ---
