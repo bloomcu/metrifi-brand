@@ -67,7 +67,14 @@ flips. The swap governs *prose emphasis*; **data is green everywhere**.
 
 ### Hairlines & washes
 Borders are **white at low alpha**, never solid grays: `--line-faint` (.06) → `--line` (.08) →
-`--line-soft` (.10) → `--line-strong` (.14). Tinted backgrounds use the wash tokens
+`--line-soft` (.10) → `--line-strong` (.14).
+
+**Which weight does which job** (measured on metrifi.com — follow this, not intuition):
+`--line-strong` (.14) draws the page frame and the full-bleed rules between sections;
+`--line-soft` (.10) divides the cells of a ruled grid; `--line` (.08) is the default component
+border. **`--line-faint` (.06) is not a structural weight.** Nothing in production draws structure
+with it, and a frame at .06 reads as absent — two separate agents shipped invisible rails by
+reaching for it. Tinted backgrounds use the wash tokens
 (`--violet-08/12/20`, `--green-08/12/20`) — e.g. selection is `--violet-20`.
 
 ---
