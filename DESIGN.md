@@ -70,6 +70,12 @@ Borders are **white at low alpha**, never solid grays: `--line-faint` (.06) → 
 `--line-soft` (.10) → `--line-strong` (.14). Tinted backgrounds use the wash tokens
 (`--violet-08/12/20`, `--green-08/12/20`) — e.g. selection is `--violet-20`.
 
+**Anything you can operate takes `--control-edge` (.35) instead**, rather than a step on that ramp.
+WCAG 2.1 SC 1.4.11 wants 3:1 between a control's visual boundary and its background; the ramp tops
+out at 1.44:1 on `--canvas`, while `--control-edge` measures 3.16:1. The ramp stays correct for
+decorative rules, which the SC exempts. Inputs, selects, checkboxes, switches and slider tracks are
+controls; a ruled grid is not.
+
 ---
 
 ## 3. Typography
@@ -102,8 +108,9 @@ when secondary, green when calling out something live. The `// ` prefix marks a 
 them `.mf-surface` so the accent flips to green inside.
 
 ### Inputs
-`--canvas` background, `--line-strong` border, `--radius-sm` (6px). Focus = violet border, no
-default outline. Labels above inputs are **mono uppercase** (see Voice).
+`--canvas` background, **`--control-edge` border** (not a hairline, because an input is operable,
+see §2), `--radius-sm` (6px). Focus = violet border, no default outline. Labels above inputs are
+**mono uppercase** (see Voice).
 
 ### Copyable values
 Anything the user is meant to read in full or copy — MCP URLs, API tokens, keys, IDs — must stay
@@ -136,6 +143,7 @@ and horizontal `<hr>` rules between sections. Section padding is fluid
 - Keep body text at weight 300.
 - Use mono uppercase for every label, eyebrow, and piece of metadata.
 - Use white-alpha hairlines for borders.
+- Give anything operable a `--control-edge` boundary; keep `--line-*` for decorative rules.
 
 **Don't**
 - Don't introduce a light theme.
