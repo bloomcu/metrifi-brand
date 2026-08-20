@@ -38,6 +38,20 @@
   --line-soft:   rgba(255, 255, 255, 0.10);
   --line-strong: rgba(255, 255, 255, 0.14);
 
+  /* ---- Control edge ----
+     The boundary of anything you can OPERATE: an input, a select, a checkbox,
+     a switch, a slider track. Deliberately NOT a step on the ramp above.
+
+     WCAG 2.1 SC 1.4.11 asks for 3:1 between a control's visual boundary and its
+     background. The ramp tops out at 1.44:1 against --canvas, which is right for
+     the ruled grids and decorative rules it was built for (the SC exempts
+     those), but it leaves nothing usable for a control edge. This is that
+     missing step: 0.35 alpha white, measured 3.16:1 on --canvas.
+
+     Use it ONLY on operable things. Decorative rules keep --line-*, and holding
+     that line is what stops a dense ruled layout turning into a cage. */
+  --control-edge: rgba(255, 255, 255, 0.35);
+
   /* ---- Tinted washes ---- */
   --violet-08: rgba(160, 116, 255, 0.08);
   --violet-12: rgba(160, 116, 255, 0.12);
