@@ -47,9 +47,13 @@
   --destructive: var(--red);
   --destructive-foreground: var(--text);
 
-  /* ---- Lines + focus ---- */
+  /* ---- Lines + focus ----
+     --border is decorative here (card edges, separators, table rules), so it
+     keeps the hairline ramp. --input is the boundary shadcn puts on Input,
+     Textarea and the Select trigger — all operable — so it takes
+     --control-edge and its 3:1. See DESIGN.md §2. */
   --border: var(--line-strong);
-  --input: var(--line-strong);
+  --input: var(--control-edge);
   --ring: var(--violet); /* Instrument focus ring */
 
   /* ---- Radius ----

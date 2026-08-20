@@ -57,7 +57,7 @@ input[type="text"], input[type="email"], input[type="password"] {
   font-size: 14px;
   font-family: var(--font-body);
   background: var(--canvas);
-  border: 1px solid var(--line-strong);
+  border: 1px solid var(--control-edge);
   color: var(--text);
 }
 input::placeholder { color: var(--muted); opacity: 0.7; }
