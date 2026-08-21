@@ -19,6 +19,10 @@
 @import "./tokens.css";
 
 :root {
+  /* Dark-only, so hand the UA the right palette for native controls. Repeated
+     from base.css because this entry imports tokens.css alone. See base.css. */
+  color-scheme: dark;
+
   /* ---- Surfaces ---- */
   --background: var(--canvas);
   --foreground: var(--text);

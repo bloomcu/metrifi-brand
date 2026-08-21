@@ -144,6 +144,9 @@ and horizontal `<hr>` rules between sections. Section padding is fluid
 - Use mono uppercase for every label, eyebrow, and piece of metadata.
 - Use white-alpha hairlines for borders.
 - Give anything operable a `--control-edge` boundary; keep `--line-*` for decorative rules.
+- Let the UA know we are dark: the system declares `color-scheme: dark`, so native
+  controls (checkbox, radio, select, scrollbars) render dark rather than in the
+  browser's light theme. Do not override it back to `normal` or `light`.
 
 **Don't**
 - Don't introduce a light theme.

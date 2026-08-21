@@ -5,6 +5,13 @@
    or use index.css which bundles everything).
    ============================================================ */
 
+/* Instrument is dark-only, so say so to the UA. Without this, native controls
+   (checkbox, radio, select, date pickers, scrollbars) render in the browser's
+   LIGHT theme on our dark canvas: an unchecked checkbox comes out a white box.
+   Contrast is not the problem there, it is that the control is visibly from a
+   different design system. Declaring the scheme hands the UA the right palette. */
+:root { color-scheme: dark; }
+
 *, *::before, *::after { box-sizing: border-box; }
 
 body {
