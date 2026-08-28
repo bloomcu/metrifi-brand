@@ -67,7 +67,14 @@ flips. The swap governs *prose emphasis*; **data is green everywhere**.
 
 ### Hairlines & washes
 Borders are **white at low alpha**, never solid grays: `--line-faint` (.06) → `--line` (.08) →
-`--line-soft` (.10) → `--line-strong` (.14). Tinted backgrounds use the wash tokens
+`--line-soft` (.10) → `--line-strong` (.14).
+
+**Which weight does which job** (measured on metrifi.com — follow this, not intuition):
+`--line-strong` (.14) draws the page frame and the full-bleed rules between sections;
+`--line-soft` (.10) divides the cells of a ruled grid; `--line` (.08) is the default component
+border. **`--line-faint` (.06) is not a structural weight.** Nothing in production draws structure
+with it, and a frame at .06 reads as absent — two separate agents shipped invisible rails by
+reaching for it. Tinted backgrounds use the wash tokens
 (`--violet-08/12/20`, `--green-08/12/20`) — e.g. selection is `--violet-20`.
 
 **Anything you can operate takes `--control-edge` (.35) instead**, rather than a step on that ramp.
@@ -120,8 +127,12 @@ value its own full-width line (label + button above, value below) rather than sq
 into one row — that squeeze is what forces the scroll. Mono, `--text`, `overflow-wrap: anywhere`.
 
 ### The rail frame (marketing/hub layouts)
-A centered **1240px frame** with hairline vertical rails (`border-inline: 1px solid var(--rail)`)
-and horizontal `<hr>` rules between sections. Section padding is fluid
+A centered **1240px frame** with hairline vertical rails (`border-inline: 1px solid var(--rail)`,
+which resolves to `--line-strong` / .14 — the weight metrifi.com actually uses) and horizontal
+`<hr>` rules between sections. Ruled grids divide with `--rail-2` (`--line-soft` / .10); the site
+does this with `gap: 1px` over the frame background rather than a border per cell, which avoids
+doubled hairlines. **Do not reach for `--line-faint` (.06) here** — nothing in production draws
+structure with it, and it renders a frame you cannot see. Section padding is fluid
 (`clamp(48px, 7vw, 88px)`). This gives the "spec sheet" feel.
 
 ---

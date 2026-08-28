@@ -88,7 +88,15 @@
   --shadow-md: 0 12px 32px -12px rgba(0, 0, 0, 0.65);
 
   /* ---- Page rails ----
-     The 1240px frame uses hairline vertical rails + <hr> rules. */
-  --rail:   rgba(255, 255, 255, 0.06);
-  --rail-2: rgba(255, 255, 255, 0.10);
+     The 1240px frame uses hairline vertical rails + <hr> rules.
+
+     These are ALIASES, not independent values, and that is deliberate.
+     They were previously hardcoded at .06 / .10, but metrifi.com draws its
+     frame at .14 and its ruled grids at .10 — so anyone following DESIGN.md
+     4 literally ("border-inline: 1px solid var(--rail)") produced a frame
+     less than half the weight of the real site. Two separate agents hit that
+     trap before it was found. Aliasing makes the doc self-correcting: follow
+     it and you now get production's actual weight. */
+  --rail:   var(--line-strong);  /* page frame — measured .14 on metrifi.com */
+  --rail-2: var(--line-soft);    /* ruled-grid dividers — measured .10 */
 }
