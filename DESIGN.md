@@ -19,6 +19,8 @@ Instrument reads like an instrument panel, not a brochure:
   is the system's signature. `// set it up`, `MCP CONNECTOR`, `NAME`, `STREAMABLE HTTP`.
 - **Space Grotesk for display**, tight tracking, set big and bold.
 - **Inter at weight 300 for body** — light, roomy line-height, never heavy.
+- **Copy as exact as the type.** Sentences end with punctuation, short copy has none, and units
+  are written one way everywhere (see §7).
 - **Restraint with color.** The canvas is near-black violet; accents are used like punctuation,
   not paint. One accent per context (see §2).
 
@@ -158,7 +160,38 @@ and horizontal `<hr>` rules between sections. Section padding is fluid
 
 ---
 
-## 7. Consuming this
+## 7. Copy
+
+Instrument copy is as precise as its type. Readers are bank and credit union buyers, and
+inconsistent punctuation reads to them as sloppy. These rules apply to every surface, product
+and marketing, and to every client site MetriFi builds.
+
+### Punctuation
+- **Headings and body copy are sentences, so they end with punctuation.** That includes section
+  headings: "Get insights now with a free test drive."
+- **Short copy ends with no period.** Card taglines, plan values, table cells, labels, eyebrows and
+  buttons: "Sized to your institution", "Built and hosted by MetriFi".
+- **Never a period in the middle of short copy.** "Stays where it is. We host your landing pages"
+  is wrong. Join the clauses with a comma ("Stays where it is, with landing pages hosted by
+  MetriFi") or make it a full sentence with a period at the end.
+- **Siblings match.** If lines in the same set (the taglines on four plan cards, the cells in one
+  column) mix trailing periods, fix all of them, not just the one you were editing.
+- **No em dashes in copy.** Use a comma, a period, a colon or parentheses instead.
+
+### Units and quantities
+- **Rates take a slash with spaces:** `10,000 / month`, `12 / year`. Never "a month" or "per year"
+  in a data value, and never `10,000/month` without the spaces.
+- **A starting point takes a trailing `+`,** not "from" or "starts at": `$36,000+`,
+  `500,000+ / month`, `24+ / year`.
+- **Numbers of four digits or more take commas:** `6,000`, `$16,000`.
+
+### Spelling
+- **American English everywhere:** color, license, organization, behavior, canceled, toward.
+  Dates as `Month D, YYYY` or `YYYY-MM-DD`.
+
+---
+
+## 8. Consuming this
 
 See [`README.md`](README.md). Short version:
 - **React + shadcn app** (apps, website islands) → `@metrifi/brand/app.css` — Instrument mapped onto
