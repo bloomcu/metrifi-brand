@@ -165,15 +165,17 @@
      ================================================================ */
   /* Type recipes: size, line height, weight, tracking. base.css turns each
      into a class (.ui-display ... .ui-caption) and uses them as the element
-     defaults, because base.css is the product entry. */
+     defaults, because base.css is the product entry. Line heights are unitless
+     (28/34, 20/28, 16/24, 14/22, 13/20, 12/16, 11/16 in px), so text that
+     inherits one at another size keeps a proportional line box. */
   --ui-display:  clamp(2rem, 4vw, 2.75rem);  --ui-display-lh: 1.08;  --ui-display-weight: 500;  --ui-display-tracking: -0.03em;   /* hero metric, a welcome screen's title */
-  --ui-title:    28px;  --ui-title-lh: 34px;     --ui-title-weight: 500;     --ui-title-tracking: -0.022em;   /* page title */
-  --ui-title-sm: 20px;  --ui-title-sm-lh: 28px;  --ui-title-sm-weight: 600;  --ui-title-sm-tracking: -0.012em; /* section and card title */
-  --ui-text-lg:  16px;  --ui-text-lg-lh: 24px;   /* lead, row name (weight 500) */
-  --ui-text-md:  14px;  --ui-text-md-lh: 22px;   /* prose, form fields, modal body */
-  --ui-text:     13px;  --ui-text-lh: 20px;      /* rows, menus, buttons, tooltips */
-  --ui-text-sm:  12px;  --ui-text-sm-lh: 16px;   /* column headers, chips, captions (weight 500) */
-  --ui-text-xs:  11px;  --ui-text-xs-lh: 16px;   /* badges, tiny meta (weight 500) */
+  --ui-title:    28px;  --ui-title-lh: 1.21;     --ui-title-weight: 500;     --ui-title-tracking: -0.022em;   /* page title */
+  --ui-title-sm: 20px;  --ui-title-sm-lh: 1.4;  --ui-title-sm-weight: 600;  --ui-title-sm-tracking: -0.012em; /* section title */
+  --ui-text-lg:  16px;  --ui-text-lg-lh: 1.5;   /* card title, lead, row name (weight 500) */
+  --ui-text-md:  14px;  --ui-text-md-lh: 1.57;   /* prose, form fields, modal body */
+  --ui-text:     13px;  --ui-text-lh: 1.54;      /* rows, menus, buttons, tooltips */
+  --ui-text-sm:  12px;  --ui-text-sm-lh: 1.33;   /* column headers, chips, captions (weight 500) */
+  --ui-text-xs:  11px;  --ui-text-xs-lh: 1.45;   /* badges, tiny meta (weight 500) */
 
   --ui-row:          36px;  /* table row */
   --ui-row-compact:  32px;  /* compact lists, menus */

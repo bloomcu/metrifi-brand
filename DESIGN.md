@@ -166,14 +166,16 @@ Big numbers are weight 400, green, `-0.045em`, tabular.
 |------|--------------------|--------|----------|
 | Display: hero metric, a welcome screen's title | `--ui-display` clamp(2rem, 4vw, 2.75rem) / 1.08 | 500 | -0.03em |
 | Page title | `--ui-title` 28 / 34 | 500 | -0.022em |
-| Section and card title | `--ui-title-sm` 20 / 28 | 600 | -0.012em |
-| Lead, row name | `--ui-text-lg` 16 / 24 | 500 | |
+| Section title | `--ui-title-sm` 20 / 28 | 600 | -0.012em |
+| Card title, lead, row name | `--ui-text-lg` 16 / 24 | 500 | |
 | Prose, form fields, modal body | `--ui-text-md` 14 / 22 | 400 | |
 | Rows, menus, buttons, tooltips | `--ui-text` 13 / 20 | 400 (450 for dense rows) | |
 | Column headers, chips, captions | `--ui-text-sm` 12 / 16 | 500 | |
 | Badges, tiny meta | `--ui-text-xs` 11 / 16 | 500 | |
 
-**Every number gets `font-variant-numeric: tabular-nums`** so columns line up.
+**Every number gets `font-variant-numeric: tabular-nums`** so columns line up. Line heights
+are unitless (the pixel pairs above are what they come to), so a child at another size keeps a
+proportional line box.
 
 ---
 
