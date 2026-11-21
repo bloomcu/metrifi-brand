@@ -1,10 +1,13 @@
 /* ============================================================
-   MetriFi Brand — typefaces
-   Loads Space Grotesk (display) + Inter (body) from Google Fonts.
-   The monospace face is the system stack (no web font needed).
+   MetriFi Brand — typeface
+   Loads Inter from Google Fonts as one variable font (weights
+   300 to 700, so in-between weights like 450 work). Inter is the
+   only brand face since v1.0.0; Space Grotesk is retired. The
+   monospace face is the system stack (no web font needed), used
+   for code, URLs, keys and IDs only.
 
    Import this once near the top of your app. If you self-host
-   fonts, skip this file and provide your own @font-face rules
-   that resolve "Space Grotesk" and "Inter".
+   fonts, skip this file and provide your own @font-face rule
+   that resolves "Inter".
    ============================================================ */
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300..700&display=swap");

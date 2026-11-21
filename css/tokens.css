@@ -1,7 +1,18 @@
 /* ============================================================
    MetriFi Brand — "Instrument" design tokens
-   The single source of truth. Dark-only. Import this anywhere
-   you need MetriFi colors, type, radii, motion, or rails.
+   The single source of truth for every MetriFi property: the
+   website, the platform, devops and anything new. Dark-only.
+   Import this anywhere you need MetriFi colors, type, radii,
+   motion, or rails.
+
+   Three groups, in this order:
+     1. Core: colors, type families, radii, motion, rails. Every
+        property uses these.
+     2. --site-*: marketing pages (metrifi.com, campaigns). Big
+        type, roomy bands, lit plates.
+     3. --ui-*: product screens (the platform, devops). Dense
+        type, row heights, control sizes, layers.
+   DESIGN.md says which group a page uses and why they differ.
 
    This file is PURE tokens — no element styles, no font loading.
    Pair with fonts.css (to load the typefaces) and base.css /
@@ -27,10 +38,21 @@
   --gold: #D4B84A;
   --red:  #E85D56;
 
-  /* ---- Text ---- */
-  --text:      #E8E4F0; /* primary */
-  --muted:     #BFB8D3; /* secondary / labels — AAA on canvas, surface and elevated */
-  --dark-text: #0F0A1A; /* text on green/violet fills */
+  /* ---- Text ----
+     Four steps, named the way devops.metrifi.com already names them. Contrast
+     on canvas / surface / elevated in the comments. */
+  --text-primary:    #E8E4F0; /* headings, values, product body. AAA everywhere */
+  --text-secondary:  #BFB8D3; /* marketing body, descriptions, labels. 10.21 / 9.39 / 8.53 */
+  --text-tertiary:   #9890B0; /* captions, column headers, timestamps, placeholders.
+                                 6.44 / 5.93 / 5.38 (AA) */
+  --text-quaternary: #736C8D; /* disabled text only (WCAG exempts it): 3.95 / 3.63 / 3.30.
+                                 Never for text someone has to read, placeholders included. */
+  --dark-text:       #0F0A1A; /* text on green/violet fills */
+
+  /* The 0.x names, kept as aliases. --muted is text here, but shadcn's app.css
+     reuses the name for a surface, so new rules use --text-secondary. */
+  --text:  var(--text-primary);
+  --muted: var(--text-secondary);
 
   /* ---- Hairlines ---- */
   --line-faint:  rgba(255, 255, 255, 0.06);
@@ -67,10 +89,22 @@
   --cta-hover:  var(--violet); /* CTA hover flips to violet */
   --focus-ring: var(--violet);
 
-  /* ---- Typography ---- */
-  --font-display: "Space Grotesk", "Segoe UI", system-ui, sans-serif;
-  --font-body:    "Inter", "Segoe UI", system-ui, sans-serif;
+  /* ---- Typography ----
+     One family since v1.0.0: Inter for headings, body, labels and numbers.
+     --font-display and --font-body are the same stack; both names stay so
+     older rules keep working. --font-mono is for code, URLs, keys and IDs
+     only, never for labels or eyebrows. */
+  --font-display: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  --font-body:    "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
   --font-mono:    ui-monospace, "SF Mono", "Menlo", "Consolas", monospace;
+
+  /* Labels and eyebrows: Inter, uppercase, letter-spaced (DESIGN.md §3).
+     A label names a field or a value; an eyebrow sits above a heading. */
+  --label-size:       11px;
+  --label-weight:     500;
+  --label-tracking:   0.1em;
+  --eyebrow-size:     12px;
+  --eyebrow-tracking: 0.14em;
 
   /* ---- Radii ----
      Buttons are nearly square (2px) — a signature of the system. */
@@ -78,6 +112,7 @@
   --radius-sm: 6px;
   --radius-md: 12px;
   --radius-lg: 16px;
+  --radius-pill: 999px;
 
   /* ---- Motion ---- */
   --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
@@ -86,9 +121,82 @@
   /* ---- Elevation ---- */
   --inset-hi:  inset 0 1px 0 rgba(255, 255, 255, 0.05);
   --shadow-md: 0 12px 32px -12px rgba(0, 0, 0, 0.65);
+  --shadow-lg: 0 24px 48px -28px rgba(0, 0, 0, 0.75);
 
   /* ---- Page rails ----
      The 1240px frame uses hairline vertical rails + <hr> rules. */
   --rail:   rgba(255, 255, 255, 0.06);
   --rail-2: rgba(255, 255, 255, 0.10);
+
+  /* ================================================================
+     2. Marketing pages (--site-*). From the October 2026 metrifi.com
+        look ("5C"). Headings are Inter 400 with tight tracking; the
+        scale is fluid. DESIGN.md §3 and §5.
+     ================================================================ */
+  /* Type recipes: size, line height, tracking. Every marketing heading is
+     weight 400. base.css turns each into a class (.site-h1 ... .site-small). */
+  --site-heading-weight: 400;
+  --site-h1:    clamp(2.4rem, 5.3vw, 4.6rem);  --site-h1-lh: 1.06;  --site-h1-tracking: -0.055em;
+  --site-h2:    clamp(2rem, 3.3vw, 2.9rem);    --site-h2-lh: 1.07;  --site-h2-tracking: -0.045em;
+  --site-h3:    1.375rem;                      --site-h3-lh: 1.2;   --site-h3-tracking: -0.02em;
+  --site-h4:    1.125rem;                      --site-h4-lh: 1.3;   --site-h4-tracking: -0.015em;
+  --site-quote: clamp(1.875rem, 3.6vw, 3rem);  --site-quote-lh: 1.12; --site-quote-tracking: -0.035em;
+  --site-lede:  1.1875rem;                     --site-lede-lh: 1.6;
+  --site-body:  1.0625rem;                     --site-body-lh: 1.65;
+  --site-small: 0.975rem;                      --site-small-lh: 1.55;
+
+  --site-band-y:  clamp(88px, 11vw, 160px);     /* section padding */
+  --site-gutter:  clamp(20px, 4.5vw, 56px);     /* side padding */
+  --site-radius-card:  14px;
+  --site-radius-plate: 20px;
+
+  --site-card:        rgba(26, 18, 48, 0.72);   /* tile on the canvas */
+  --site-card-hover:  rgba(36, 25, 66, 0.9);
+  --site-field:       rgba(26, 18, 48, 0.78);   /* form field on a band */
+  --site-pill:        rgba(255, 255, 255, 0.05);
+  --site-plate:       #120C20;                  /* the one lit closing panel */
+  --site-violet-glow: rgba(160, 116, 255, 0.6);
+  --site-green-glow:  rgba(125, 212, 170, 0.34);
+
+  /* ================================================================
+     3. Product screens (--ui-*). Dense, quiet, hairline-ruled: tables,
+        forms, settings, dashboards. Inter at small sizes needs weight,
+        so body is 400 and titles 500-600. DESIGN.md §3 and §6.
+     ================================================================ */
+  /* Type recipes: size, line height, weight, tracking. base.css turns each
+     into a class (.ui-display ... .ui-caption) and uses them as the element
+     defaults, because base.css is the product entry. */
+  --ui-display:  clamp(2rem, 4vw, 2.75rem);  --ui-display-lh: 1.08;  --ui-display-weight: 500;  --ui-display-tracking: -0.03em;   /* hero metric, a welcome screen's title */
+  --ui-title:    28px;  --ui-title-lh: 34px;     --ui-title-weight: 500;     --ui-title-tracking: -0.022em;   /* page title */
+  --ui-title-sm: 20px;  --ui-title-sm-lh: 28px;  --ui-title-sm-weight: 600;  --ui-title-sm-tracking: -0.012em; /* section and card title */
+  --ui-text-lg:  16px;  --ui-text-lg-lh: 24px;   /* lead, row name (weight 500) */
+  --ui-text-md:  14px;  --ui-text-md-lh: 22px;   /* prose, form fields, modal body */
+  --ui-text:     13px;  --ui-text-lh: 20px;      /* rows, menus, buttons, tooltips */
+  --ui-text-sm:  12px;  --ui-text-sm-lh: 16px;   /* column headers, chips, captions (weight 500) */
+  --ui-text-xs:  11px;  --ui-text-xs-lh: 16px;   /* badges, tiny meta (weight 500) */
+
+  --ui-row:          36px;  /* table row */
+  --ui-row-compact:  32px;  /* compact lists, menus */
+  --ui-control:      36px;  /* inputs, buttons */
+  --ui-control-sm:   28px;
+  --ui-radius-chip:  4px;
+  --ui-radius-control: var(--radius-sm);  /* 6px: inputs, secondary buttons, segmented controls */
+  --ui-radius-card:  var(--radius-md);    /* 12px: cards, panels, modals */
+
+  --ui-hover:        rgba(255, 255, 255, 0.04);  /* hovered row or control */
+  --ui-selected:     var(--violet-12);           /* selected row, active tab or segment */
+
+  --ui-shadow-pop:   0 8px 24px -8px rgba(0, 0, 0, 0.6);   /* menus, tooltips */
+  --ui-shadow-modal: 0 24px 64px -16px rgba(0, 0, 0, 0.7); /* the modal only */
+  --ui-scrim:        rgba(8, 5, 14, 0.64);
+
+  /* Layers, lowest first. */
+  --z-sticky: 10;
+  --z-header: 20;
+  --z-dropdown: 30;
+  --z-scrim: 40;
+  --z-modal: 50;
+  --z-popover: 60;
+  --z-tooltip: 70;
+  --z-toast: 80;
 }

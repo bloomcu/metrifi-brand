@@ -41,15 +41,16 @@
 
   /* ---- Muted (shadcn: a surface + its caption text) ---- */
   --muted: var(--surface);
-  --muted-foreground: #BFB8D3; /* = Instrument --muted text; restated because shadcn reuses the --muted name as a surface */
+  --muted-foreground: var(--text-secondary); /* the brand's --muted text; shadcn reuses the --muted name as a surface */
 
   /* ---- Accent = subtle violet wash for hover/active highlights ---- */
   --accent: var(--violet-12);
   --accent-foreground: var(--text);
 
-  /* ---- Destructive ---- */
+  /* ---- Destructive ----
+     Dark text on the red fill: light text measures 2.74:1 there, dark 5.68:1. */
   --destructive: var(--red);
-  --destructive-foreground: var(--text);
+  --destructive-foreground: var(--dark-text);
 
   /* ---- Lines + focus ----
      --border is decorative here (card edges, separators, table rules), so it
