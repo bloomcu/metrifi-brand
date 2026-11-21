@@ -39,7 +39,8 @@
 
 /* ---- Field labels: Inter, uppercase, letter-spaced — the Instrument voice ----
    Every <label>, or .field-label on anything else that names a field. A label
-   that wraps a checkbox or radio is a sentence, so it stays sentence case. */
+   that wraps a checkbox or radio is a sentence, so it stays sentence case.
+   :where() keeps that rule at a bare label's weight, so any class wins. */
 label, .field-label {
   display: block;
   font-family: var(--font-body);
@@ -50,7 +51,7 @@ label, .field-label {
   color: var(--text-secondary);
   margin: 16px 0 7px;
 }
-label:has(> input[type="checkbox"], > input[type="radio"]) {
+label:where(:has(> input[type="checkbox"], > input[type="radio"])) {
   display: flex;
   align-items: center;
   gap: 10px;
