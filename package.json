@@ -1,7 +1,7 @@
 {
   "name": "@metrifi/brand",
-  "version": "0.5.0",
-  "description": "MetriFi's \"Instrument\" design system — design tokens, base styles, components, and brand assets. The single shared source of truth for every MetriFi app and website.",
+  "version": "1.0.0",
+  "description": "MetriFi's \"Instrument\" design system: design tokens, base styles, components and brand assets. The single source of truth for every MetriFi property, marketing and product.",
   "license": "UNLICENSED",
   "private": false,
   "repository": {

@@ -3,6 +3,12 @@
    Opinionated resets + element defaults that express the
    Instrument voice. Depends on tokens.css (import it first,
    or use index.css which bundles everything).
+
+   The element defaults are the PRODUCT recipes (14px body,
+   28px page title), because the plain-HTML entry serves
+   product screens. Marketing pages put the .site-* classes
+   on their headings and copy. Both sets of classes are at the
+   bottom of this file; DESIGN.md §3 says which role is which.
    ============================================================ */
 
 /* Instrument is dark-only, so say so to the UA. Without this, native controls
@@ -10,42 +16,85 @@
    LIGHT theme on our dark canvas: an unchecked checkbox comes out a white box.
    Contrast is not the problem there, it is that the control is visibly from a
    different design system. Declaring the scheme hands the UA the right palette. */
-:root { color-scheme: dark; }
+:root { color-scheme: dark; accent-color: var(--violet); }  /* checkboxes, radios, ranges */
 
 *, *::before, *::after { box-sizing: border-box; }
 
 body {
   margin: 0;
   background-color: var(--canvas);
-  color: var(--text);
+  color: var(--text-primary);
   font-family: var(--font-body);
-  font-weight: 300;
-  font-size: 1.0625rem;
-  line-height: 1.6;
+  font-weight: 400;
+  font-size: var(--ui-text-md);
+  line-height: var(--ui-text-md-lh);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
 
+/* Product defaults (DESIGN.md §3): h1 is a page title, h2 a section title,
+   h3 a lead. Marketing headings take the .site-* classes instead. */
 h1, h2, h3 {
   font-family: var(--font-display);
-  font-weight: 700;
-  line-height: 1.12;
-  letter-spacing: -0.02em;
-  color: var(--text);
+  color: var(--text-primary);
   margin: 0;
 }
+h1 { font-size: var(--ui-title);    line-height: var(--ui-title-lh);    font-weight: var(--ui-title-weight);    letter-spacing: var(--ui-title-tracking); }
+h2 { font-size: var(--ui-title-sm); line-height: var(--ui-title-sm-lh); font-weight: var(--ui-title-sm-weight); letter-spacing: var(--ui-title-sm-tracking); }
+h3 { font-size: var(--ui-text-lg);  line-height: var(--ui-text-lg-lh);  font-weight: 500; }
 
-/* Emphasis: violet on the canvas, green on a surface/card.
-   Add .mf-surface to a card/panel to flip the accent. */
+/* Heading emphasis: the violet second clause, in both contexts. On a marketing
+   surface/card it flips to green (.mf-surface). Emphasis inside product prose is
+   weight, not color (DESIGN.md §2). */
 h1 em, h2 em, h3 em { color: var(--violet); font-style: normal; }
 .mf-surface h2 em, .mf-surface h3 em { color: var(--green); }
 
 p { margin: 0; text-wrap: pretty; }
+/* Emphasis in running text is weight 600, not the browser's 700 (DESIGN.md §2). */
+b, strong { font-weight: 600; }
 a { color: inherit; text-decoration: none; }
 
-::selection { background: var(--violet-20); color: var(--text); }
+::selection { background: var(--violet-20); color: var(--text-primary); }
 :focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; }
 
 /* Utilities */
-.mono { font-family: var(--font-mono); }
+.mono { font-family: var(--font-mono); }  /* code, URLs, keys, IDs only */
 .tab  { font-variant-numeric: tabular-nums lining-nums; }
+
+/* The eyebrow above a heading: Inter, uppercase, letter-spaced, muted.
+   Violet when it leads a page section on the canvas (DESIGN.md §3). */
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: var(--eyebrow-size);
+  font-weight: 400;
+  letter-spacing: var(--eyebrow-tracking);
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+/* ---- Type recipes (DESIGN.md §3) ---- */
+/* Marketing */
+.site-h1, .site-h2, .site-h3, .site-h4, .site-quote {
+  font-family: var(--font-display);
+  font-weight: var(--site-heading-weight);
+  color: var(--text-primary);
+  text-wrap: balance;
+}
+.site-h1    { font-size: var(--site-h1);    line-height: var(--site-h1-lh);    letter-spacing: var(--site-h1-tracking); }
+.site-h2    { font-size: var(--site-h2);    line-height: var(--site-h2-lh);    letter-spacing: var(--site-h2-tracking); }
+.site-h3    { font-size: var(--site-h3);    line-height: var(--site-h3-lh);    letter-spacing: var(--site-h3-tracking); }
+.site-h4    { font-size: var(--site-h4);    line-height: var(--site-h4-lh);    letter-spacing: var(--site-h4-tracking); }
+.site-quote { font-size: var(--site-quote); line-height: var(--site-quote-lh); letter-spacing: var(--site-quote-tracking); }
+.site-h1 em { display: block; }
+.site-lede  { font-size: var(--site-lede);  line-height: var(--site-lede-lh);  color: var(--text-secondary); }
+.site-body  { font-size: var(--site-body);  line-height: var(--site-body-lh);  color: var(--text-secondary); }
+.site-small { font-size: var(--site-small); line-height: var(--site-small-lh); color: var(--text-secondary); }
+
+/* Product */
+.ui-display  { font-size: var(--ui-display);  line-height: var(--ui-display-lh);  font-weight: var(--ui-display-weight);  letter-spacing: var(--ui-display-tracking); }
+.ui-title    { font-size: var(--ui-title);    line-height: var(--ui-title-lh);    font-weight: var(--ui-title-weight);    letter-spacing: var(--ui-title-tracking); }
+.ui-title-sm { font-size: var(--ui-title-sm); line-height: var(--ui-title-sm-lh); font-weight: var(--ui-title-sm-weight); letter-spacing: var(--ui-title-sm-tracking); }
+.ui-lead     { font-size: var(--ui-text-lg);  line-height: var(--ui-text-lg-lh);  font-weight: 500; }
+.ui-prose    { font-size: var(--ui-text-md);  line-height: var(--ui-text-md-lh); }
+.ui-text     { font-size: var(--ui-text);     line-height: var(--ui-text-lh); }
+.ui-caption  { font-size: var(--ui-text-sm);  line-height: var(--ui-text-sm-lh);  font-weight: 500; color: var(--text-tertiary); }

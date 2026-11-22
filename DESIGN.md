@@ -1,13 +1,39 @@
 # MetriFi "Instrument" Design System
 
-The visual language for MetriFi 2.0 — dark-only, across **every** surface. Named **Instrument**:
-precise, technical, and quietly confident, like a well-made measuring tool. This document
-is the written spec; [`css/tokens.css`](css/tokens.css) is the machine-readable one. When the
-two disagree, the tokens win and this doc is wrong — fix it.
+The visual language of every MetriFi property: the website (metrifi.com and campaign pages),
+the platform (platform.metrifi.com), devops.metrifi.com, and anything new. Named **Instrument**:
+precise, technical and quietly confident, like a well-made measuring tool. This document is the
+written spec; [`css/tokens.css`](css/tokens.css) is the machine-readable one. When the two
+disagree, the tokens win and this doc is wrong, so fix it.
 
-> **Scope.** Dark mode is the *only* mode — there is no light theme, on **any** surface. Instrument
-> applies everywhere: **product** (apps, the gateway, the IdP) **and** **marketing** (the website,
-> campaigns, decks). Marketing does **not** diverge — it's the same dark Instrument brand.
+> **Scope.** Dark mode is the only mode, on every property. One brand, two contexts:
+> **marketing** pages persuade and explain, **product** screens get a task done. They share
+> the palette, the typeface, the buttons and the copy rules (§1 to §4 and §9). They differ in
+> type scale, density, cards and motion (§5 and §6). Pick the context per block, not per
+> property: a public page on the platform that sells (the /connect hub) sets its introduction in
+> marketing type, while its install steps, forms and copy controls use product type.
+
+**v1.0.0 (November 2026) changed the type.** Inter is now the only typeface, for headings, body,
+labels and numbers. Space Grotesk is retired, and monospace is for code and copyable values only.
+This is the look metrifi.com converged on in October 2026 and devops.metrifi.com already uses.
+§11 lists what changed for anyone moving up from 0.x.
+
+---
+
+## Which context a page uses
+
+| | Marketing | Product |
+|-|-----------|---------|
+| **Where** | metrifi.com, campaign and landing pages, decks, the introduction of a public page that sells (the /connect hub) | Sign-in and sign-up, everything behind sign-in, settings, admin, dashboards, devops, and the steps, forms and copy controls on any page |
+| **Job** | Persuade and explain, one idea per band | Get a task done, many facts per screen |
+| **Headings** | Inter 400, big, tight tracking (`--site-*`) | Inter 500, or 600 at 20px and under, modest tracking (`--ui-*`) |
+| **Body** | 17px at 400 | 14px at 400, 13px in rows, menus and buttons |
+| **Layout** | The 1240px rail frame, bands of 88 to 160px | A shell with a header; forms, tables and panels, at most 1240px wide |
+| **Cards** | Tiles with a 14px radius that glow on hover; one lit plate per page | Panels with a 12px radius, a hairline and an inset highlight; no glow |
+| **Emphasis** | Color: a violet second clause in a heading | Weight, not color; green stays for data |
+| **Motion** | Reveals on scroll, one eyebrow cursor that blinks three times | State changes only, 120 to 180ms |
+
+The **primary button is the same everywhere**: green, 2px corners, flips to violet on hover.
 
 ---
 
@@ -15,14 +41,14 @@ two disagree, the tokens win and this doc is wrong — fix it.
 
 Instrument reads like an instrument panel, not a brochure:
 
-- **Monospace labels, uppercase, letter-spaced** — eyebrows, field labels, metadata, status. This
-  is the system's signature. `// set it up`, `MCP CONNECTOR`, `NAME`, `STREAMABLE HTTP`.
-- **Space Grotesk for display**, tight tracking, set big and bold.
-- **Inter at weight 300 for body** — light, roomy line-height, never heavy.
+- **One typeface, set with care.** Inter everywhere. Big marketing headings are weight 400 with
+  tight tracking; product titles are weight 500. Never bold for decoration.
+- **Short labels in uppercase, letter-spaced.** Eyebrows above headings and form field labels:
+  `FOR CREDIT UNIONS & BANKS`, `EMAIL`, `MCP CONNECTOR`. Everything else is sentence case (§3).
 - **Copy as exact as the type.** Sentences end with punctuation, short copy has none, and units
-  are written one way everywhere (see §7).
+  are written one way everywhere (§9).
 - **Restraint with color.** The canvas is near-black violet; accents are used like punctuation,
-  not paint. One accent per context (see §2).
+  not paint. One accent per context (§2).
 
 ---
 
@@ -33,26 +59,28 @@ Instrument reads like an instrument panel, not a brochure:
 |-------|-----|-----|
 | `--canvas` | `#0F0A1A` | Page background |
 | `--surface` | `#1A1230` | Cards, panels |
-| `--elevated` | `#241845` | Raised surfaces, hovers |
+| `--elevated` | `#241845` | Raised surfaces, menus, hovers |
 
-### Accents — two colors, two jobs
-Each accent has a role, and the role is what decides the color — not just what's behind it.
+### Accents: two colors, two jobs
+- **Green is the data and measurement accent** (`--green #7DD4AA`): numbers, metrics, proof
+  points, and the **primary button**. Green stands for the measured value, which is the whole
+  "Instrument" idea, so it is at home on any background.
+- **Violet is the text and interface accent** (`--violet #A074FF`): links, the active tab, the
+  focus ring, selection, checkboxes, and heading emphasis.
 
-- **Green is the data / measurement accent** (`--green #7DD4AA`): numbers, metrics, proof points,
-  and the **primary CTA**. Green stands for the *measured value* — which is the whole "Instrument"
-  idea — so it's at home on **any** background, canvas or surface. (This is why the primary CTA has
-  always been green on the canvas.)
-- **Violet is the canvas text/UI accent** (`--violet #A074FF`): text emphasis and links on the page
-  background (`h1 em`), and the focus ring.
+**Heading emphasis is violet in both contexts:** the violet second clause (`h1 em`) is a brand
+signature. On a marketing surface or card it flips to green (`.mf-surface h2 em`). **Inside
+product prose, tables and forms, emphasis is weight, not color** (`base.css` sets `b` and
+`strong` to 600 against the 400 body):
+almost everything there sits on a panel, and green must stay free for data.
 
-**Text emphasis still swaps with the background:** violet on the canvas, green on a surface. That's
-why `h1 em` is violet but `.mf-surface h2 em` is green — add `.mf-surface` to a card so its emphasis
-flips. The swap governs *prose emphasis*; **data is green everywhere**.
+**Links are violet** on every surface (`.link`, `.foot a`, and links in running text), with
+`--violet-hover` on hover. Green is never a link color.
 
 | Token | Hex | |
 |-------|-----|-|
-| `--violet` / `--violet-hover` | `#A074FF` / `#B088FF` | Canvas text/UI accent, focus ring |
-| `--green` / `--green-hover` | `#7DD4AA` / `#93E0BB` | Data/metric accent (any bg), **primary CTA fill**, surface emphasis |
+| `--violet` / `--violet-hover` | `#A074FF` / `#B088FF` | Text and interface accent, focus ring |
+| `--green` / `--green-hover` | `#7DD4AA` / `#93E0BB` | Data accent on any background, **primary button fill** |
 
 ### Status
 | Token | Hex | Use |
@@ -60,107 +88,211 @@ flips. The swap governs *prose emphasis*; **data is green everywhere**.
 | `--gold` | `#D4B84A` | Warnings, pending |
 | `--red` | `#E85D56` | Errors, destructive |
 
+A number that went down is not an error: show it in a neutral color. Red is for a real problem.
+
 ### Text
-| Token | Hex | Use |
-|-------|-----|-----|
-| `--text` | `#E8E4F0` | Primary |
-| `--muted` | `#BFB8D3` | Secondary, labels, captions. AAA on all three surfaces (10.21 / 9.39 / 8.53) |
-| `--dark-text` | `#0F0A1A` | Text on green/violet fills |
+Four steps, named the way devops.metrifi.com already names them.
 
-### Hairlines & washes
-Borders are **white at low alpha**, never solid grays: `--line-faint` (.06) → `--line` (.08) →
-`--line-soft` (.10) → `--line-strong` (.14). Tinted backgrounds use the wash tokens
-(`--violet-08/12/20`, `--green-08/12/20`) — e.g. selection is `--violet-20`.
+| Token | Hex | Use | Contrast (canvas / surface / elevated) |
+|-------|-----|-----|-----|
+| `--text-primary` | `#E8E4F0` | Headings, values, body on product screens | AAA |
+| `--text-secondary` | `#BFB8D3` | Body on marketing pages, descriptions, labels | 10.21 / 9.39 / 8.53 |
+| `--text-tertiary` | `#9890B0` | Captions, column headers, timestamps, placeholders | 6.44 / 5.93 / 5.38 |
+| `--text-quaternary` | `#736C8D` | Disabled text only (WCAG exempts it) | 3.95 / 3.63 / 3.30 |
+| `--dark-text` | `#0F0A1A` | Text on green or violet fills | |
 
-**Anything you can operate takes `--control-edge` (.35) instead**, rather than a step on that ramp.
-WCAG 2.1 SC 1.4.11 wants 3:1 between a control's visual boundary and its background; the ramp tops
-out at 1.44:1 on `--canvas`, while `--control-edge` measures 3.16:1. The ramp stays correct for
-decorative rules, which the SC exempts. Inputs, selects, checkboxes, switches and slider tracks are
-controls; a ruled grid is not.
+`--text` and `--muted` are the 0.x names and stay as aliases of the first two. New rules use the
+`--text-*` names: shadcn's `app.css` reuses `--muted` for a surface color, so `--muted` means
+different things in different consumers. Placeholders are text and need 4.5:1, so they take
+`--text-tertiary`, never `--text-quaternary`.
+
+### Hairlines and washes
+Borders are **white at low alpha**, never solid grays: `--line-faint` (.06), `--line` (.08),
+`--line-soft` (.10), `--line-strong` (.14). Tinted backgrounds use the wash tokens
+(`--violet-08/12/20`, `--green-08/12/20`); selection is `--violet-20`.
+
+**Anything you can operate takes `--control-edge` (.35) instead.** WCAG 2.1 SC 1.4.11 wants 3:1
+between a control's visual boundary and its background; the hairline ramp tops out at 1.44:1 on
+`--canvas`, while `--control-edge` measures 3.16:1. Inputs, selects, checkboxes, switches and
+slider tracks are controls; a ruled grid is not.
 
 ---
 
 ## 3. Typography
 
-| Role | Family | Weight | Notes |
-|------|--------|--------|-------|
-| Display (`h1`–`h3`) | `--font-display` Space Grotesk | 700 | `letter-spacing: -0.02em`, `line-height: 1.12` |
-| Body | `--font-body` Inter | **300** | `1.0625rem` / `1.6`. Light is the default — resist bumping it. |
-| Labels / eyebrows / metadata | `--font-mono` | — | `11–13px`, `UPPERCASE`, `letter-spacing: 0.08–0.16em` |
+**One family: Inter** (`--font-display` and `--font-body` are the same stack; both names stay so
+older rules keep working). `fonts.css` loads it as one variable font, so any weight from 300 to
+700 works. **`--font-mono` is for code, URLs, keys and IDs only**: an MCP URL, a prompt to paste,
+a tool name like `sitebuilder__*`, a one-time code. Never for labels, eyebrows or numbers.
 
-**Headline scale** (fluid): `h1` ≈ `clamp(2.3rem, 4.4vw, 3.5rem)` at `line-height: 1.05`;
-`h2` ≈ `clamp(1.7rem, 3vw, 2.3rem)`. Use `text-wrap: pretty` / `balance` on long lines.
+### Labels and eyebrows
+- **Eyebrow** (above a heading): `.eyebrow`, 12px, weight 400, uppercase, `0.14em` tracking,
+  `--text-secondary`. Violet when it leads a section on the canvas. Marketing may add the green cursor
+  (§5). A `// ` prefix marks a section label on product screens and guides.
+- **Field label** (names an input or a value): 11px, weight 500, uppercase, `0.1em` tracking,
+  `--text-secondary` (`--label-*` tokens). `components.css` styles every `<label>` this way, and
+  `.field-label` gives the same look to anything else that names a field. A `<label>` that wraps
+  a checkbox or radio is a sentence ("Keep me signed in for 30 days"), so it stays sentence case
+  at 14px.
+- **Everything else is sentence case:** navigation, tabs, buttons, links, table column headers,
+  badges and chips, menu items. A screen of uppercase headers reads as noise.
 
-**Eyebrows** are mono, uppercase, and colored by context — violet on canvas (`klabel`), muted
-when secondary, green when calling out something live. The `// ` prefix marks a section label.
+### Type recipes
+Each role below is a set of tokens (size, line height, weight, tracking) and a class in
+`base.css` that applies all of them: `.site-h1`, `.site-h2`, `.site-h3`, `.site-h4`,
+`.site-quote`, `.site-lede`, `.site-body`, `.site-small` for marketing, and `.ui-display`,
+`.ui-title`, `.ui-title-sm`, `.ui-lead`, `.ui-prose`, `.ui-text`, `.ui-caption` for product.
+Use the class, or the tokens in your own rule. **Don't restate a size, weight or tracking a
+recipe already has:** a property that sets its own drifts away from the brand the next time it
+changes. `base.css` makes the product recipes the element defaults (body 14px, `h1` a page
+title, `h2` a section title), because the plain-HTML entry serves product screens.
+
+### Marketing scale (`--site-*`)
+| Role | Size | Weight | Line height | Tracking |
+|------|------|--------|-------------|----------|
+| `h1` | `--site-h1` clamp(2.4rem, 5.3vw, 4.6rem) | 400 | 1.06 | -0.055em |
+| `h2` | `--site-h2` clamp(2rem, 3.3vw, 2.9rem) | 400 | 1.07 | -0.045em |
+| `h3` | `--site-h3` 1.375rem | 400 | 1.2 | -0.02em |
+| `h4` | `--site-h4` 1.125rem | 400 | 1.3 | -0.015em |
+| Pull quote | `--site-quote` clamp(1.875rem, 3.6vw, 3rem) | 400 | 1.12 | -0.035em |
+| Lede | `--site-lede` 1.1875rem | 400 | 1.6 | |
+| Body | `--site-body` 1.0625rem | 400 | 1.65 | |
+| Small | `--site-small` 0.975rem | 400 | 1.55 | |
+
+The second clause of a heading can be violet (`<em>` or a class); in an `h1` it takes its own line.
+Big numbers are weight 400, green, `-0.045em`, tabular.
+
+### Product scale (`--ui-*`)
+| Role | Size / line height | Weight | Tracking |
+|------|--------------------|--------|----------|
+| Display: hero metric, a welcome screen's title | `--ui-display` clamp(2rem, 4vw, 2.75rem) / 1.08 | 500 | -0.03em |
+| Page title | `--ui-title` 28 / 34 | 500 | -0.022em |
+| Section title | `--ui-title-sm` 20 / 28 | 600 | -0.012em |
+| Card title, lead, row name | `--ui-text-lg` 16 / 24 | 500 | |
+| Prose, form fields, modal body | `--ui-text-md` 14 / 22 | 400 | |
+| Rows, menus, buttons, tooltips | `--ui-text` 13 / 20 | 400 (450 for dense rows) | |
+| Column headers, badges, chips, captions | `--ui-text-sm` 12 / 16 | 500 | |
+| Tiny meta (a count in a tab, a footnote mark) | `--ui-text-xs` 11 / 16 | 500 | |
+
+**Every number gets `font-variant-numeric: tabular-nums`** so columns line up. Line heights
+are unitless (the pixel pairs above are what they come to), so a child at another size keeps a
+proportional line box.
 
 ---
 
-## 4. Components
+## 4. Shared components
 
 ### Buttons
-- **Near-square corners** — `--radius-button: 2px`. This squared-off button is a brand signature;
-  do not round it.
-- **Primary CTA**: green fill, canvas-colored text, **hover flips to violet**. (`--cta` → `--cta-hover`.)
-- **Ghost / secondary**: transparent, violet text + 1.5px violet border, brightens on hover.
-- `:active` nudges down 1px. Transitions use `--ease-standard` at ~140ms.
-
-### Cards / panels
-`--surface` background, `--line` border, `--radius-md` (12px), `--inset-hi` top highlight. Mark
-them `.mf-surface` so the accent flips to green inside.
+- **Near-square corners**, `--radius-button: 2px`, on the primary button in both contexts. This
+  squared-off button is a brand signature; don't round it.
+- **Primary**: green fill, canvas-colored text, **hover flips to violet** (`--cta`, `--cta-hover`).
+  Weight 500, sentence case.
+- **Secondary**: marketing uses an outline (1px inset green or violet, 2px corners). Product uses
+  a quiet button: `--elevated` or transparent fill, `--control-edge` border, `--ui-radius-control`
+  (6px), 13px weight 500.
+- `:active` nudges down 1px. Transitions use `--ease-standard` at about 140ms.
 
 ### Inputs
-`--canvas` background, **`--control-edge` border** (not a hairline, because an input is operable,
-see §2), `--radius-sm` (6px). Focus = violet border, no default outline. Labels above inputs are
-**mono uppercase** (see Voice).
+`--canvas` background (or `--site-field` on a marketing band), **`--control-edge` border**,
+`--radius-sm` (6px), 14px text, placeholders in `--text-tertiary`. Focus is a violet border plus
+a 3px `--violet-20` ring, so it shows at a glance. The label sits above the input, uppercase (§3).
 
 ### Copyable values
-Anything the user is meant to read in full or copy — MCP URLs, API tokens, keys, IDs — must stay
-**fully visible**. Let the value **wrap** to the next line; never hide characters behind a horizontal
-scrollbar, an ellipsis, or `text-overflow` truncation. When a copy button shares the row, give the
-value its own full-width line (label + button above, value below) rather than squeezing all three
-into one row — that squeeze is what forces the scroll. Mono, `--text`, `overflow-wrap: anywhere`.
+Anything someone reads in full or copies, such as MCP URLs, API tokens, keys and IDs, stays **fully
+visible**. Let the value **wrap**; never hide characters behind a horizontal scrollbar, an
+ellipsis or `text-overflow`. When a copy button shares the row, give the value its own full-width
+line (label and button above, value below). Mono, `--text`, `overflow-wrap: anywhere`.
 
-### The rail frame (marketing/hub layouts)
+### The rail frame
 A centered **1240px frame** with hairline vertical rails (`border-inline: 1px solid var(--rail)`)
-and horizontal `<hr>` rules between sections. Section padding is fluid
-(`clamp(48px, 7vw, 88px)`). This gives the "spec sheet" feel.
+and horizontal rules between sections. Marketing pages and public product pages (/connect) use it.
+
+### Focus
+A 2px `--focus-ring` (violet) outline with a 2px offset on everything interactive, except text
+fields, which use the border and ring above. Checkboxes, radios and sliders keep the outline.
 
 ---
 
-## 5. Radii, motion, elevation
+## 5. Marketing only
 
-- **Radii** — buttons `2px` (signature), inputs/small `6px`, cards `12px`, large `16px`.
-- **Motion** — `--ease-standard` for UI, `--ease-out` for entrances. Keep durations short (120–180ms).
-- **Elevation** — prefer the inset highlight (`--inset-hi`) over drop shadows. `--shadow-md` exists
-  for genuinely floating elements (menus, modals) only.
+These belong on marketing pages and nowhere in a product screen:
+
+- **Bands**: each section is a band with `--site-band-y` padding and a hairline above it, inside
+  the rail frame. A section head puts the eyebrow and heading on the left and the lede on the right
+  on desktop.
+- **Ruled columns**: hairlines between columns on desktop.
+- **Tiles**: `--site-card` fill, `--site-radius-card` (14px), an inset hairline and `--shadow-lg`.
+  A linked tile glows violet on hover (`--site-violet-glow`).
+- **Pills**: small rounded labels (`--radius-pill`), `--site-pill` fill, 13px, sentence case.
+- **Check lists**: each line starts with a green dot in a soft green ring.
+- **The plate**: one lit panel per page for the closing call to action (`--site-plate`, 20px
+  radius, violet and green light behind a dot grid). Nothing in it loops.
+- **The lit call to action**: the page's one primary button may carry a green glow
+  (`--site-green-glow`) and a trailing arrow.
+- **The eyebrow cursor**: a green block after an eyebrow that blinks three times and rests.
+- **Reveals**: content may fade up once as it scrolls into view. Reduced motion turns it off.
+
+## 6. Product only
+
+Product screens read like Linear: dense, quiet and hairline-ruled, and unmistakably MetriFi
+through the violet-black neutrals, green numbers, the square green button and the uppercase labels.
+
+- **Density**: table rows `--ui-row` (36px), compact lists and menus `--ui-row-compact` (32px),
+  controls `--ui-control` (36px) or `--ui-control-sm` (28px). Spacing on a 4px grid.
+- **Panels**: `--surface` fill, `--line` border, `--ui-radius-card` (12px), `--inset-hi`. No
+  shadow, no glow.
+- **Tables**: column headers 12px weight 500 in `--text-tertiary`, sentence case; rows separated by
+  `--line-faint`; a hovered row takes `--ui-hover`, a selected one `--ui-selected`. Numbers tabular, right-aligned when they compare.
+- **Badges and chips**: 12px weight 500, sentence case, `--ui-radius-chip` (4px), a status color at
+  about 12% as the fill and the full color as the text.
+- **Navigation and tabs**: 13px weight 500, sentence case. The active tab is violet text on
+  `--violet-12`.
+- **Menus, popovers and tooltips**: `--elevated`, `--line-strong` edge, `--radius-sm`,
+  `--ui-shadow-pop`. **Modals**: `--surface`, 12px radius, `--ui-shadow-modal`, `--ui-scrim`
+  behind. Layers use the `--z-*` tokens.
+- **Data**: the hero metric, stat numbers and every "up" change use green. Labels around them stay
+  neutral. Green is never decoration and never a category color in a chart.
 
 ---
 
-## 6. Do / Don't
+## 7. Radii, motion, elevation
+
+- **Radii**: buttons `2px` (signature), chips `4px`, inputs and product controls `6px`, product
+  cards and modals `12px`, marketing tiles `14px`, the marketing plate `20px`, pills round.
+- **Motion**: `--ease-standard` for interface, `--ease-out` for entrances. Product durations 120 to
+  180ms. Nothing loops. Under `prefers-reduced-motion: reduce`, turn off reveals, the eyebrow
+  cursor, glows that animate and the 1px press nudge; color changes may stay.
+- **Elevation**: prefer the inset highlight (`--inset-hi`) to drop shadows. Shadows are for things
+  that float: menus and tooltips (`--ui-shadow-pop`), the modal (`--ui-shadow-modal`), marketing
+  tiles (`--shadow-lg`).
+
+---
+
+## 8. Do / Don't
 
 **Do**
-- Use green for numbers, metrics, and proof points on any background — it's the data accent (§2).
-- Flip *prose* emphasis with `.mf-surface` whenever text sits on a card.
-- Keep body text at weight 300.
-- Use mono uppercase for every label, eyebrow, and piece of metadata.
-- Use white-alpha hairlines for borders.
-- Give anything operable a `--control-edge` boundary; keep `--line-*` for decorative rules.
-- Let the UA know we are dark: the system declares `color-scheme: dark`, so native
-  controls (checkbox, radio, select, scrollbars) render dark rather than in the
-  browser's light theme. Do not override it back to `normal` or `light`.
+- Use Inter for every heading, label and number.
+- Use green for numbers, metrics and proof points on any background.
+- Keep uppercase for eyebrows and field labels; sentence case everywhere else.
+- Use the marketing scale on marketing pages and the product scale on product screens, through
+  the recipe classes or tokens rather than sizes of your own.
+- Use white-alpha hairlines for borders, and `--control-edge` for anything operable.
+- Let the browser know we are dark: the system declares `color-scheme: dark`, so native controls
+  render dark. Don't override it.
 
 **Don't**
+- Don't use monospace for labels, eyebrows or numbers. It is for code and copyable values.
+- Don't bring back Space Grotesk, or add a second typeface.
 - Don't introduce a light theme.
-- Don't round buttons past 2px.
-- Don't use violet as the *prose-emphasis* accent on a surface, or green for prose emphasis on the
-  bare canvas — text emphasis still swaps with the background (§2). (Data stays green either way.)
+- Don't round the primary button past 2px.
+- Don't put marketing tiles, glows, plates or reveals on a product screen, or product-dense tables
+  on a marketing page.
+- Don't use color for emphasis on a product screen; use weight.
 - Don't reach for solid gray borders or heavy drop shadows.
-- Don't pile multiple *UI* accents into one context — green-for-data alongside violet-for-text is fine.
 
 ---
 
-## 7. Copy
+## 9. Copy
 
 Instrument copy is as precise as its type. Readers are bank and credit union buyers, and
 inconsistent punctuation reads to them as sloppy. These rules apply to every surface, product
@@ -191,13 +323,45 @@ and marketing, and to every client site MetriFi builds.
 
 ---
 
-## 8. Consuming this
+## 10. Consuming this
 
-See [`README.md`](README.md). Short version:
-- **React + shadcn app** (apps, website islands) → `@metrifi/brand/app.css` — Instrument mapped onto
-  shadcn's variable contract; every shadcn component comes out on-brand. See README → *Theming a shadcn app*.
-- **Plain HTML / Blade** (the IdP) → `@metrifi/brand` (full bundle: tokens + base + components).
-- **Tokens only** → `@metrifi/brand/tokens.css`.
+See [`README.md`](README.md). Short version, by property:
 
-Brand assets: `@metrifi/brand/logo.svg`, `@metrifi/brand/favicon.svg`. This is **one** brand across
-**every** surface (product + marketing) — there's no separate marketing theme.
+| Property | Import | Context |
+|----------|--------|---------|
+| metrifi.com (Astro, Tailwind, shadcn) | `@metrifi/brand/app.css` + `fonts.css`; marketing classes built on `--site-*` | Marketing |
+| The platform's server-rendered pages (Laravel Blade) | `@metrifi/brand` (the full bundle: fonts, tokens, base, components) | Product, plus marketing type on public pages that sell |
+| A React or Vue app (shadcn or Tailwind) | `@metrifi/brand/app.css` + `fonts.css` | Product |
+| devops.metrifi.com (Next.js) | `@metrifi/brand/tokens.css`, fonts self-hosted | Product |
+
+Brand assets: `@metrifi/brand/logo.svg` and `@metrifi/brand/favicon.svg`. `specimen.html` at
+the repo root shows every token and both contexts; open it in a browser.
+
+---
+
+## 11. What changed in v1.0.0
+
+For a property moving up from 0.x:
+
+1. **Type**: `--font-display` is Inter (it was Space Grotesk). Headings in `base.css` are weight
+   500 (they were 700); `.title` is weight 500.
+2. **Labels**: `<label>` and every eyebrow are Inter, not monospace. Rules of your own that set
+   `font-family: var(--font-mono)` on a label, eyebrow, badge, tab or number should switch to
+   `var(--font-body)`; keep mono on code and copyable values.
+3. **Body weight**: `base.css` sets body text to 400 (it was 300).
+4. **Fonts**: `fonts.css` loads Inter only, as a variable font. Space Grotesk no longer loads.
+5. **Element defaults are product recipes**: body text 14px / 22px (it was 17px), `h1` 28px
+   weight 500, `h2` 20px weight 600, `h3` 16px weight 500. Marketing headings use the `.site-*`
+   classes.
+6. **Text tokens**: `--text-primary`, `--text-secondary`, `--text-tertiary` and
+   `--text-quaternary`; `--text` and `--muted` stay as aliases.
+7. **Components**: checkbox and radio labels are sentence case; placeholders are
+   `--text-tertiary` at full opacity; a focused input gets a violet ring; `.link` and `.foot a`
+   are violet (they were green); checkboxes take `accent-color: var(--violet)`.
+8. **shadcn adapter**: `--muted-foreground` reads `--text-secondary`; `--destructive-foreground`
+   is dark text on the red fill (light text measured 2.74:1).
+9. **New tokens and classes**: `--label-*`, `--eyebrow-*`, `--radius-pill`, `--shadow-lg`, the
+   `--site-*` and `--ui-*` groups with their type recipes, `--ui-hover`, `--ui-selected`, the
+   `--z-*` layers; `.eyebrow`, `.field-label`, and the recipe classes.
+
+No palette color changed.
