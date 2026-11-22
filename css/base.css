@@ -50,6 +50,8 @@ h1 em, h2 em, h3 em { color: var(--violet); font-style: normal; }
 .mf-surface h2 em, .mf-surface h3 em { color: var(--green); }
 
 p { margin: 0; text-wrap: pretty; }
+/* Emphasis in running text is weight 600, not the browser's 700 (DESIGN.md §2). */
+b, strong { font-weight: 600; }
 a { color: inherit; text-decoration: none; }
 
 ::selection { background: var(--violet-20); color: var(--text-primary); }

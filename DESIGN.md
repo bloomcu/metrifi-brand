@@ -70,7 +70,8 @@ Instrument reads like an instrument panel, not a brochure:
 
 **Heading emphasis is violet in both contexts:** the violet second clause (`h1 em`) is a brand
 signature. On a marketing surface or card it flips to green (`.mf-surface h2 em`). **Inside
-product prose, tables and forms, emphasis is weight, not color** (500 or 600 against 400):
+product prose, tables and forms, emphasis is weight, not color** (`base.css` sets `b` and
+`strong` to 600 against the 400 body):
 almost everything there sits on a panel, and green must stay free for data.
 
 **Links are violet** on every surface (`.link`, `.foot a`, and links in running text), with
@@ -170,8 +171,8 @@ Big numbers are weight 400, green, `-0.045em`, tabular.
 | Card title, lead, row name | `--ui-text-lg` 16 / 24 | 500 | |
 | Prose, form fields, modal body | `--ui-text-md` 14 / 22 | 400 | |
 | Rows, menus, buttons, tooltips | `--ui-text` 13 / 20 | 400 (450 for dense rows) | |
-| Column headers, chips, captions | `--ui-text-sm` 12 / 16 | 500 | |
-| Badges, tiny meta | `--ui-text-xs` 11 / 16 | 500 | |
+| Column headers, badges, chips, captions | `--ui-text-sm` 12 / 16 | 500 | |
+| Tiny meta (a count in a tab, a footnote mark) | `--ui-text-xs` 11 / 16 | 500 | |
 
 **Every number gets `font-variant-numeric: tabular-nums`** so columns line up. Line heights
 are unitless (the pixel pairs above are what they come to), so a child at another size keeps a
@@ -208,7 +209,7 @@ and horizontal rules between sections. Marketing pages and public product pages 
 
 ### Focus
 A 2px `--focus-ring` (violet) outline with a 2px offset on everything interactive, except text
-inputs, which use the border and ring above.
+fields, which use the border and ring above. Checkboxes, radios and sliders keep the outline.
 
 ---
 

@@ -174,8 +174,8 @@
   --ui-text-lg:  16px;  --ui-text-lg-lh: 1.5;   /* card title, lead, row name (weight 500) */
   --ui-text-md:  14px;  --ui-text-md-lh: 1.57;   /* prose, form fields, modal body */
   --ui-text:     13px;  --ui-text-lh: 1.54;      /* rows, menus, buttons, tooltips */
-  --ui-text-sm:  12px;  --ui-text-sm-lh: 1.33;   /* column headers, chips, captions (weight 500) */
-  --ui-text-xs:  11px;  --ui-text-xs-lh: 1.45;   /* badges, tiny meta (weight 500) */
+  --ui-text-sm:  12px;  --ui-text-sm-lh: 1.33;   /* column headers, badges, chips, captions (weight 500) */
+  --ui-text-xs:  11px;  --ui-text-xs-lh: 1.45;   /* tiny meta (weight 500) */
 
   --ui-row:          36px;  /* table row */
   --ui-row-compact:  32px;  /* compact lists, menus */

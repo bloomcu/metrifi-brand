@@ -76,9 +76,14 @@ input[type="text"], input[type="email"], input[type="password"] {
 }
 /* Placeholders are text, so they need real contrast: --text-tertiary is AA. */
 input::placeholder { color: var(--text-tertiary); opacity: 1; }
-/* Focus: a violet border plus a soft violet ring, so it is visible at a glance,
-   not just a 1px color change. */
-input:focus { outline: none; border-color: var(--violet); box-shadow: 0 0 0 3px var(--violet-20); }
+/* Focus on a text field: a violet border plus a soft violet ring, so it is
+   visible at a glance, not just a 1px color change. Checkboxes, radios and
+   sliders keep the shared 2px :focus-visible outline from base.css. */
+input:is([type="text"], [type="email"], [type="password"], [type="search"]):focus {
+  outline: none;
+  border-color: var(--violet);
+  box-shadow: 0 0 0 3px var(--violet-20);
+}
 
 /* ---- Primary CTA: green fill, canvas text, hover flips to violet ---- */
 .btn {
